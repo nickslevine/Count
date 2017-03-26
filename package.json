@@ -1,0 +1,14 @@
+{
+  "name": "Count",
+  "version": "1.0.0",
+  "description": "An Electron calculator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/nickslevine/the-calc-desktop.git",
+  "author": "Nick Levine",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  }
+}
