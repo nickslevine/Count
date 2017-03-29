@@ -1,3 +1,31 @@
+//System
+
+const electron = require('electron');
+const fs = require('fs');
+const savePath = (electron.app || electron.remote.app).getPath('userData')+"/data.txt";
+
+function save() {
+  let calcs = document.getElementById('answers').innerHTML;
+  console.log(savePath);
+  fs.writeFileSync(savePath, calcs);
+}
+
+function load() {
+  fs.readFile(savePath, 'utf8', function(err, data) {
+    if (err) throw err;
+    console.log(data);
+    document.getElementById('answers').innerHTML = data;
+  });
+}
+
+function clear() {
+    console.log("clearing...")
+    document.getElementById('answers').innerHTML = '';
+    save();
+}
+
+load();
+
 //Interface
 function calc() {
         if (document.getElementById('expression').value != '') {
@@ -13,6 +41,7 @@ function calc() {
         } else {
             document.getElementById('expression').value = '';
         }
+        save();
         }
     }
     function focbox() {
