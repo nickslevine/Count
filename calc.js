@@ -2,6 +2,9 @@ const electron = require('electron');
 const fs = require('fs');
 const savePath = (electron.app || electron.remote.app).getPath('userData')+"/data.txt";
 
+const clickSound = new Audio('click.mp3');
+const chartSound = new Audio('chart.mp3')
+
 // Data
 
 let history = {
@@ -61,6 +64,12 @@ function calc() {
     }
 
     function handleKeys() {
+        if ((event.keyCode > 47) && (event.keyCode < 91) ) {
+            clickSound.play();
+        }
+        if (event.keyCode == 222 ) {
+            clickSound.play();
+        }
         if (event.keyCode == 13) {calc()}
         else if (event.keyCode == 38) {
             if (history.index > 0) {
@@ -157,5 +166,5 @@ function calc() {
             .style("fill", "white")
             .attr('stroke', 'black');
         document.getElementById('answers').innerHTML += "<br>"
+        chartSound.play();
     }
-

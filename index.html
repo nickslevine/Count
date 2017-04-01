@@ -17,25 +17,25 @@
                 <input type="text" placeholder="" id="expression" class="typing">
             </div>
             <div class = "buttons">
-                <button class='btn right-border bottom-border' onclick='btninput(this.innerHTML)'>7</button>
-                <button class='btn left-border right-border bottom-border' onclick='btninput(this.innerHTML)'>8</button>
-                <button class='btn left-border right-border bottom-border' onclick='btninput(this.innerHTML)'>9</button>
+                <button class='btn right-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>7</button>
+                <button class='btn left-border right-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>8</button>
+                <button class='btn left-border right-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>9</button>
                 <button class='btn left-border bottom-border right-border' onclick='multiply()'>x</button>
 
-                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML)'>4</button>
-                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML)'>5</button>
-                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML)'>6</button>
+                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>4</button>
+                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML); clickSound.play();'>5</button>
+                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML); clickSound.play();'>6</button>
                 <button class='btn top-border left-border bottom-border right-border'onclick='divide()'>÷</button>
 
-                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML)'>1</button>
-                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML)'>2</button>
-                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML)'>3</button>
-                <button class='btn top-border left-border bottom-border right-border' onclick='btninput(this.innerHTML)'>+</button>
+                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>1</button>
+                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML); clickSound.play();'>2</button>
+                <button class='btn right-border top-border bottom-border left-border' onclick='btninput(this.innerHTML); clickSound.play();'>3</button>
+                <button class='btn top-border left-border bottom-border right-border' onclick='btninput(this.innerHTML); clickSound.play();'>+</button>
 
-                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML)'>0</button>
+                <button class='btn right-border top-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>0</button>
                 <button class='btn left-border top-border right-border bottom-border' onclick='calc()'>=</button>
                 <button class='btn left-border top-border right-border bottom-border' onclick='document.getElementById("expression").value="";document.getElementById("answers").innerHTML="";save()'>C</button>
-                <button class='btn left-border top-border right-border bottom-border' onclick='btninput(this.innerHTML)'>-</button>
+                <button class='btn left-border top-border right-border bottom-border' onclick='btninput(this.innerHTML); clickSound.play();'>-</button>
             </div>     
         </div>
         <div class="answers" id="answers">
