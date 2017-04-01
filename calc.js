@@ -99,6 +99,8 @@ function calc() {
 
     const tan = (n) => Math.tan(n);
 
+    const extent = (arr) => d3.extent(arr);
+
     const pi = Math.PI;
 
     const sum = (...nums) => [...nums].reduce((acc, val) => (acc + val));

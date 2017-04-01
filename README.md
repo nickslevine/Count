@@ -1,6 +1,6 @@
 # Count
 
-Count is a calculator app. It saves your calculations between sessions. Be careful - pressing "C" will delete your history. 
+Count is a calculator app. It saves your calculations between sessions. Press up or down to scroll through inputs. Be careful - pressing "C" will delete your history. 
 
 Count is a window into the JavaScript interpreter, so you can do things like define variables and perform operations using them. There are also custom functions, listed below. 
 
@@ -15,11 +15,13 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 * mean(numbers): get average of numbers
 * roots(a, b, c): get roots of quadratic function
 * sin(n), cos(n), tan(n): trig functions
-* chart(function): plot chart. 
-  * for example, chart("x*x") or 
+* extent(array): get min and max of array of numbers
+  * for example, extent([1,2,3,4,5]) returns 1,5
+* chart(function): plot chart
+  * for example, chart("x*x") or chart("-x)
 
 
-## Built-in Variables
+## Constants
 * pi
 
 ## To Add
@@ -28,9 +30,8 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 - [ ] add more constants
 - [ ] Array manipulation
 - [ ] Date manipulation
-- [ ] up and down arrow to access history
-- [ ] function to list variables in current scope
-- [ ] d3 charts to make Count a graphing calculator
+- [x] up and down arrow to access history
+- [x] d3 charts to make Count a graphing calculator
 - [ ] sounds
 - [ ] help()
 - [ ] random numbers
