@@ -1,8 +1,13 @@
-//System
-
 const electron = require('electron');
 const fs = require('fs');
 const savePath = (electron.app || electron.remote.app).getPath('userData')+"/data.txt";
+
+// Data
+
+let history = {
+    inputs: [],
+    index: -1
+}
 
 function save() {
   let calcs = document.getElementById('answers').innerHTML;
@@ -26,10 +31,13 @@ function clear() {
 
 load();
 
-//Interface
+// Interface
+
 function calc() {
         if (document.getElementById('expression').value != '') {
             exp = document.getElementById('expression').value;
+            history.inputs.push(exp);
+            history.index += 1;
             ans = eval(exp);
             console.log(exp, " ", ans);
         if (ans != undefined) {
@@ -51,7 +59,28 @@ function calc() {
         document.getElementById('expression').value = '';
         console.log('worked');
     }
-    // Math functions
+
+    function handleKeys() {
+        if (event.keyCode == 13) {calc()}
+        else if (event.keyCode == 38) {
+            if (history.index > 0) {
+                history.index -= 1;
+                document.getElementById('expression').value = history.inputs[history.index];
+            }
+        }
+        else if (event.keyCode == 40) {
+            if (history.index < history.inputs.length-1) {
+                history.index += 1;
+                document.getElementById('expression').value = history.inputs[history.index];
+            }
+        }
+        else {
+            focbox();
+        }
+}
+
+// Math functions
+
     function divide() {
         document.getElementById('expression').value += '/';
     }
@@ -62,24 +91,69 @@ function calc() {
         document.getElementById('expression').value += val;
     }
 
-    let sqrt = (n) => Math.sqrt(n);
+    const sqrt = (n) => Math.sqrt(n);
 
-    let pi = Math.PI;
+    const sin = (n) => Math.sin(n);
 
-    let sum = (...nums) => [...nums].reduce((acc, val) => (acc + val));
+    const cos = (n) => Math.cos(n);
 
-    let mean = (...nums) => [...nums].reduce((p, e) => {
+    const tan = (n) => Math.tan(n);
+
+    const pi = Math.PI;
+
+    const sum = (...nums) => [...nums].reduce((acc, val) => (acc + val));
+
+    const mean = (...nums) => [...nums].reduce((p, e) => {
         return p + e;
     }) / nums.length;
 
-    let c = (n) => ((n - 32) * 5 / 9);
+    const c = (n) => ((n - 32) * 5 / 9);
 
-    let f = (n) => (n * (9 / 5) + 32);
+    const f = (n) => (n * (9 / 5) + 32);
 
-    let roots = (a,b,c) => {
+    const roots = (a,b,c) => {
         let arr = [];
         arr.push(((-1*b + (sqrt(b*b - 4*a*c)))/2*a));
         arr.push(((-1*b - (sqrt(b*b - 4*a*c)))/2*a));
         return arr;
+    }
+
+    const chart = (expression) => {
+        
+        var svg = d3.select('#answers')
+            .append('svg')
+                .attr("width", 100)
+                .attr("height", 100)
+            .append("g")
+                .attr("transform", 
+                    "translate(" + 0 + "," + 0 + ")");
+
+        var x = d3.scaleLinear().range([0, 100]);
+        var y = d3.scaleLinear().range([100, 0]);
+
+        var line = d3.line()
+            .x(function (d) {return x(d.x);})
+            .y(function (d) {return y(d.y);});
+
+        let fn = (x) => eval(expression);
+
+        var data = d3.range(-100, 101).map(function (d) {
+            //return to -100, 100?
+            return {x:d, y:parseInt(fn(d))};
+        });
+
+        console.log(data);
+
+        x.domain(d3.extent(data, function (d) {return d.x;}));
+        y.domain(d3.extent(data, function (d) {return d.y;}));
+
+        svg.append('path')
+            .datum(data)
+            .attr('d', line)
+            .attr('stroke-width', 1.5)
+            .style("stroke-dasharray", ("2, 2"))
+            .style("fill", "white")
+            .attr('stroke', 'black');
+        document.getElementById('answers').innerHTML += "<br>"
     }
 

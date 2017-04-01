@@ -14,6 +14,9 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 * sum(numbers): add numbers
 * mean(numbers): get average of numbers
 * roots(a, b, c): get roots of quadratic function
+* sin(n), cos(n), tan(n): trig functions
+* chart(function): plot chart. 
+  * for example, chart("x*x") or 
 
 
 ## Built-in Variables
