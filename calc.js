@@ -2,8 +2,11 @@ const electron = require('electron');
 const fs = require('fs');
 const savePath = (electron.app || electron.remote.app).getPath('userData')+"/data.txt";
 
-const clickSound = new Audio('click.mp3');
-const chartSound = new Audio('chart.mp3')
+let clickSound = new Audio('click.mp3');
+clickSound.volume = 0.04;
+let chartSound = new Audio('chart.mp3');
+chartSound.volume = .08;
+
 
 // Data
 
@@ -22,7 +25,10 @@ function load() {
   fs.readFile(savePath, 'utf8', function(err, data) {
     if (err) throw err;
     console.log(data);
-    document.getElementById('answers').innerHTML = data;
+    if (data == "") {
+        document.getElementById('answers').innerHTML += "<span class='instructions'>Type help() for hints</span><br><br>"
+    }
+    document.getElementById('answers').innerHTML += data;
   });
 }
 
@@ -37,7 +43,7 @@ load();
 // Interface
 
 function calc() {
-        if (document.getElementById('expression').value != '') {
+        if ((document.getElementById('expression').value != '') && (document.getElementById('expression').value != 'help')) {
             exp = document.getElementById('expression').value;
             history.inputs.push(exp);
             history.index += 1;
@@ -100,6 +106,28 @@ function calc() {
         document.getElementById('expression').value += val;
     }
 
+    const help = () => {
+        helpText = `
+        Press up or down to scroll through inputs.<br><br>
+        Store stuff in variables.<br>
+            eg: <br>a = 10 * 4<br> b = a * 2<br><br><br>
+        Built-in functions:<br><br>
+            * sqrt(n), sin(n), cos(n), tan(n)<br><br>
+            * c(n) & f(n)<br>[convert celsius to fahrenheit or vice-versa]<br><br>
+            * sum(x,y,z,..), mean(x,y,z,..)<br><br>
+            * roots(a, b, c) [get roots of quadratic function]<br><br>
+            * extent(array) [get min and max of array]<br><br>
+            * rgb(hex) [convert rgb to hex]<br><br>
+            * hex(rgb) [convert hex to rgb]<br><br>
+            * random(min, max)<br>[get random # between min and max]<br><br>
+            * chart(f(x))<br>[make d3 chart]<br>
+            &nbsp* eg<br>&nbsp&nbspchart("x**2"),<br>&nbsp&nbspchart("-x")<br><br>
+        Use Count in your browser @ count.fyi
+        `
+        let helpDiv = "<div class='instructions'>" + helpText + "</div>"
+        document.getElementById('answers').innerHTML += helpDiv
+    }
+
     const sqrt = (n) => Math.sqrt(n);
 
     const sin = (n) => Math.sin(n);
@@ -122,11 +150,36 @@ function calc() {
 
     const f = (n) => (n * (9 / 5) + 32);
 
+    const hex = (r,g,b) => {
+        //http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+        return '#' + [r,g,b].map((n) => {
+            let hex  = n.toString(16);
+            if (hex.length == 1) {
+                return '0' + hex;
+            }
+            else {
+                return hex;
+            }
+        }).join('');
+    }
+
+    const rgb = (hex) => {
+        //http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+        return hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
+                    ,(m, r, g, b) => '#' + r + r + g + g + b + b)
+            .substring(1).match(/.{2}/g)
+            .map(x => parseInt(x, 16))
+    }
+
     const roots = (a,b,c) => {
         let arr = [];
         arr.push(((-1*b + (sqrt(b*b - 4*a*c)))/2*a));
         arr.push(((-1*b - (sqrt(b*b - 4*a*c)))/2*a));
         return arr;
+    }
+
+    const random = (min,max) => {
+        return Math.floor(Math.random()*(max-min+1)+min);
     }
 
     const chart = (expression) => {
