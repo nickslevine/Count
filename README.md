@@ -27,7 +27,7 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 * extent(array): get min and max of array of numbers
   * for example, extent([1,2,3,4,5]) returns 1,5
 * chart(function): plot chart
-  * for example, chart("x*x") or chart("-x)
+  * for example, chart("x*x") or chart("-x")
 * random(min, max): return a random number between min and max
 * hex(r,g,b): convert hex to rgb
 * rgb(hex): convert rgb to hex
