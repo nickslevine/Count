@@ -1,5 +1,5 @@
 <p align="center">
-<img src="/count.icns">
+<img src="count_96x96.png">
 </p>
 
 # Count
@@ -9,6 +9,11 @@ Count is a calculator app. It saves your calculations between sessions. Press up
 Count is a window into the JavaScript interpreter, so you can do things like define variables and perform operations using them. There are also custom functions, listed below.
 
 You can use Count in your web browser by visting count.fyi (this won't save your calculation history, though).
+
+<p align="center">
+<img src="count_screenshot.png">
+</p>
+
 
 ## Functions
 
@@ -26,11 +31,6 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 * random(min, max): return a random number between min and max
 * hex(r,g,b): convert hex to rgb
 * rgb(hex): convert rgb to hex
-
-<p align="center">
-<img src="count_screenshot.png">
-</p>
-
 
 ## To Do
 - [ ] add more math functions, unit conversion, constants
