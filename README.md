@@ -1,3 +1,7 @@
+<p align="center">
+<img src="/count.icns">
+</p>
+
 # Count
 
 Count is a calculator app. It saves your calculations between sessions. Press up or down to scroll through inputs. Be careful - pressing "C" will delete your history.
@@ -23,8 +27,10 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 * hex(r,g,b): convert hex to rgb
 * rgb(hex): convert rgb to hex
 
-## Constants
-* pi
+<p align="center">
+<img src="count_screenshot.png">
+</p>
+
 
 ## To Do
 - [ ] add more math functions, unit conversion, constants
@@ -36,3 +42,4 @@ You can use Count in your web browser by visting count.fyi (this won't save your
 - [x] help()
 - [x] random numbers
 - [x] Convert hex to rgb and vice-versa
+

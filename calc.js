@@ -122,7 +122,7 @@ function calc() {
             * random(min, max)<br>[get random # between min and max]<br><br>
             * chart(f(x))<br>[make d3 chart]<br>
             &nbsp* eg<br>&nbsp&nbspchart("x**2"),<br>&nbsp&nbspchart("-x")<br><br>
-        Use Count in your browser @ count.fyi
+        Use Count in your browser @ count.fyi<br><br>
         `
         let helpDiv = "<div class='instructions'>" + helpText + "</div>"
         document.getElementById('answers').innerHTML += helpDiv
